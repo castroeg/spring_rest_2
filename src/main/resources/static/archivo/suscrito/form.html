@@ -115,6 +115,9 @@
         },
         created(){
         	
+        	console.log(localStorage.getItem("token"));
+            Vue.axios.defaults.headers.common['Authorization'] ='Bearer '+ localStorage.getItem("token");
+
 
         },
         mounted() {//Cuando se monta  el DOM
@@ -148,12 +151,12 @@
             },
             //Metodo para obtener los suscritos
             getSuscritos() {
-            	Vue.axios.get(this.apiURL + '/suscritos')
+            	Vue.axios.get(this.apiURL + 'suscritos')
             	  .then(response => {
             		  this.suscritos = response.data
             		  
             		  //Crea una lista ordenada 
-            		  this.suscrito(((a,b) =>.codigo - b.codigo));
+            		  this.suscrito(((a,b) =>a.codigo - b.codigo));
             		  
             		  console.log(response.data);
             	  }).catch(error => console.log(error))
@@ -174,7 +177,7 @@
             			            		
             			
             			            			
-            			Vue.axios.delete(this.apiURL + 'suscritos/'+suscrito.codigo)
+            			Vue.axios.delete(this.apiURL + 'suscritos'+suscrito.codigo)
             	              	  .then(response => {
             	                		  
             	                		  console.log("Eliminado...")

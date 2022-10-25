@@ -33,10 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/");
-		web.ignoring().antMatchers("/autenticar");
+		web.ignoring().antMatchers("/autenticar");// no es necesario
 		web.ignoring().antMatchers(HttpMethod.GET,"/form");
 		web.ignoring().antMatchers("/lib/**");
-		web.ignoring().antMatchers("/**/**.ico**");
+		web.ignoring().antMatchers("/**/**.ico**");//Mediante esto se habilita todo con extension
 		
 	}
 }
